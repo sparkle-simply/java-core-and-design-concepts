@@ -1,21 +1,14 @@
-# Factory Design Pattern
+# Builder Design Pattern
 
 ## Overview
-> Factory Method defines an interface or abstract class for creating objects and lets subclasses decide which class to instantiate.
+> Builder design pattern provides step by step approach to construct complex objects providing flexible and controlled object creation
 
 ## Class Diagram
-![Factory Pattern](https://media.geeksforgeeks.org/wp-content/uploads/20240110163911/Key-Component-of-Factory-Method-Design-Pattern-in-Java-768.jpg)
+![Builder Pattern](https://media.geeksforgeeks.org/wp-content/uploads/20240206185827/UML-Class-Diagram-for-Builder-Design-Pattern.webp)
 
 ## Benefits
-- Decouples object creation from business logic
-- Promotes loose coupling through abstraction
-- Makes code more maintainable and testable
-- Easy to extend with new product types
-- Follows Single Responsibility and Open/Closed principles
-
-## Limitations
-- Can increase complexity by adding multiple classes and may not require factory for simple objects
-- Client code must be aware of concrete subclasses to make accurate factory calls
+- Encapsulates object creation in separate builder class
+- Support different variations of product creation using same process
 
 ## References
-- [GeeksForGeeks](https://www.geeksforgeeks.org/factory-method-design-pattern-in-java/)
+- [GeeksForGeeks](https://www.geeksforgeeks.org/system-design/builder-design-pattern/)
