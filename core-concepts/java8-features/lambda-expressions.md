@@ -20,7 +20,7 @@ public class Utility {
 
 ```
 
-- Functional interface with default method
+- Functional interface with default method, default methods were introduced to have backward compatibility so that new interfaces can have new code without changing existing code
 
 ```aiignore
 interface FuncInterface {
