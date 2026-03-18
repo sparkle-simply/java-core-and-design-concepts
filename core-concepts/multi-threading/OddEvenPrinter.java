@@ -48,6 +48,7 @@ class OddEvenPrinterApproach1 {
 /**
  * Approach2:
  * Using ExecutorService
+ * notifyAll() safer in multi-thread environments to avoid missed signals
  */
 class OddEvenPrinterApproach2 {
     private int number = 1;
