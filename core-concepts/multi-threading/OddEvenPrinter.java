@@ -1,4 +1,11 @@
-class OddEvenPrinter {
+/**
+ * Approach1:
+ * Shared variable number keeps track of current value.
+ * synchronized ensures only one thread executes at a time.
+ * wait() pauses the thread if it’s not its turn.
+ * notify() wakes up the other thread.
+ */
+class OddEvenPrinterApproach1 {
     private int number = 1;
     private final int MAX = 20;
 
