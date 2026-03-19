@@ -153,7 +153,12 @@ class OddEvenPrinterApproach3 {
     }
 }
 
-
+/**
+ * Here with two semaphores,
+ * One starts with 1 permit to allow the odd thread to run first,
+ * and the other starts with 0 to block the even thread.
+ * After printing, each thread releases the other semaphore to maintain strict alternation.
+ */
 class OddEvenPrinterApproach4 {
 
     private int number = 1;
@@ -207,16 +212,16 @@ public class App {
         evenThread.start();
 
         OddEvenPrinterApproach2 printer2 = new OddEvenPrinterApproach2();
-        ExecutorService executor = Executors.newFixedThreadPool(2);
-        executor.execute(() -> printer2.printOdd());
-        executor.execute(() -> printer2.printEven());
-        executor.shutdown();
+        ExecutorService executor2 = Executors.newFixedThreadPool(2);
+        executor2.execute(() -> printer2.printOdd());
+        executor2.execute(() -> printer2.printEven());
+        executor2.shutdown();
 
         OddEvenPrinterApproach3 printer3 = new OddEvenPrinterApproach3();
-        ExecutorService executor = Executors.newFixedThreadPool(2);
-        executor.execute(printer3::printOdd);
-        executor.execute(printer3::printEven);
-        executor.shutdown();
+        ExecutorService executor3 = Executors.newFixedThreadPool(2);
+        executor3.execute(printer3::printOdd);
+        executor3.execute(printer3::printEven);
+        executor3.shutdown();
 
         OddEvenPrinterApproach4 printer4 = new OddEvenPrinterApproach4();
         ExecutorService executor = Executors.newFixedThreadPool(2);
