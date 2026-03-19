@@ -2,6 +2,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.Semaphore;
 
 /**
  * Approach1:
@@ -152,6 +153,50 @@ class OddEvenPrinterApproach3 {
     }
 }
 
+
+class OddEvenPrinterApproach4 {
+
+    private int number = 1;
+    private final int MAX = 20;
+
+    private final Semaphore oddSemaphore = new Semaphore(1);  // Start with Odd
+    private final Semaphore evenSemaphore = new Semaphore(0); // Even waits initially
+
+    public void printOdd() {
+        try {
+            while (number <= MAX) {
+                oddSemaphore.acquire();
+
+                if (number <= MAX) {
+                    System.out.println("Odd: " + number);
+                    number++;
+                }
+
+                evenSemaphore.release();
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    public void printEven() {
+        try {
+            while (number <= MAX) {
+                evenSemaphore.acquire();
+
+                if (number <= MAX) {
+                    System.out.println("Even: " + number);
+                    number++;
+                }
+
+                oddSemaphore.release();
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+}
+
 public class App {
     public static void util(String[] args) {
 
@@ -171,6 +216,12 @@ public class App {
         ExecutorService executor = Executors.newFixedThreadPool(2);
         executor.execute(printer3::printOdd);
         executor.execute(printer3::printEven);
+        executor.shutdown();
+
+        OddEvenPrinterApproach4 printer4 = new OddEvenPrinterApproach4();
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+        executor.execute(printer4::printOdd);
+        executor.execute(printer4::printEven);
         executor.shutdown();
     }
 }
