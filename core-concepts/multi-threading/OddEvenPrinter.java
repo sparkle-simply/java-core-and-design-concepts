@@ -93,6 +93,13 @@ class OddEvenPrinterApproach2 {
     }
 }
 
+/**
+ * ReentrantLock gives explicit locking control.
+ * Condition works like wait()/notify() but allows multiple wait queues.
+ * await() → releases lock & waits.
+ * signal() → wakes one waiting thread.
+ * finally { lock.unlock(); } ensures lock release.
+ */
 class OddEvenPrinterApproach3 {
 
     private int number = 1;
