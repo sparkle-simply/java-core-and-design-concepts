@@ -10,6 +10,13 @@ import java.util.concurrent.Semaphore;
  * synchronized ensures only one thread executes at a time.
  * wait() pauses the thread if it’s not its turn.
  * notify() wakes up the other thread.
+ *
+ * Life Cycle with wait/notify
+ * 1. Thread acquires lock
+ * 2. Calls wait() → releases lock → goes to WAITING
+ * 3. Another thread calls notify()
+ * 4. Waiting thread competes for lock again
+ * 5. Continues execution
  */
 class OddEvenPrinterApproach1 {
     private int number = 1;
@@ -51,6 +58,10 @@ class OddEvenPrinterApproach1 {
 /**
  * Approach2:
  * Using ExecutorService
+ * ExecutorService is a framework for managing and reusing threads via thread pools.
+ * It separates task submission from thread management, improves performance,
+ * supports asynchronous execution, and provides lifecycle control like shutdown and result retrieval using Future
+ *
  * notifyAll() safer in multi-thread environments to avoid missed signals
  */
 class OddEvenPrinterApproach2 {
