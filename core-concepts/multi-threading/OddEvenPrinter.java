@@ -107,10 +107,13 @@ class OddEvenPrinterApproach2 {
 
 /**
  * ReentrantLock gives explicit locking control.
+ * ReentrantLock is an advanced locking mechanism in java.util.concurrent that provides more flexibility than synchronized.
+ * It supports reentrancy, fairness policy, interruptible locks, tryLock for timeout handling, and multiple condition variables.
+ * It is implemented using AbstractQueuedSynchronizer.
  * Condition works like wait()/notify() but allows multiple wait queues.
  * await() → releases lock & waits.
  * signal() → wakes one waiting thread.
- * finally { lock.unlock(); } ensures lock release.
+ * finally { lock.unlock(); } ensures lock release preventing deadlock in case of exception flows.
  */
 class OddEvenPrinterApproach3 {
 
