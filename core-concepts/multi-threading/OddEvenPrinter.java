@@ -168,10 +168,15 @@ class OddEvenPrinterApproach3 {
 }
 
 /**
+ * Semaphore is a concurrency utility that controls access to a shared resource using permits.
+ * Threads must acquire a permit before proceeding and release it afterward. Unlike locks, semaphores can allow
+ * multiple threads simultaneously.
+ * They are commonly used for resource pooling, rate limiting, and controlling concurrency.
+ *
  * Here with two semaphores,
- * One starts with 1 permit to allow the odd thread to run first,
- * and the other starts with 0 to block the even thread.
- * After printing, each thread releases the other semaphore to maintain strict alternation.
+ * The odd semaphore starts with one permit so the odd thread executes first.
+ * Each thread acquires its semaphore, prints the number, increments it, and then releases the other semaphore.
+ * This guarantees deterministic alternation without using synchronized or wait/notify.
  */
 class OddEvenPrinterApproach4 {
 
