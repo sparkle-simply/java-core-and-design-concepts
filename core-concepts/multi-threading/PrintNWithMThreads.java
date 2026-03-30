@@ -2,6 +2,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 
+/**
+ * Each thread prints numbers in round-robin fashion.
+ */
 class PrintNumbers {
 
     private int number = 1;
