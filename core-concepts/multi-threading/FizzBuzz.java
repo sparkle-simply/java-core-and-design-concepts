@@ -5,6 +5,10 @@ import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.Semaphore;
 
 /**
+ * Problem Statement: FizzBuzz using 4 threads
+ * The FizzBuzz problem requires printing numbers from 1 to 20, but for multiples of three, print "Fizz" instead of the number and for the multiples of five print "Buzz".
+ * For numbers which are multiples of both three and five print "FizzBuzz".
+ *
  * Approach1:
  * Shared variable number keeps track of current value.
  * synchronized ensures only one thread executes at a time.
