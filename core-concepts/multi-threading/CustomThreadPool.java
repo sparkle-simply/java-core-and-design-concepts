@@ -2,10 +2,23 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
+ * To implement custom thread pool, we need three core components:
+ * 1. A Task Queue: To hold tasks (Runnable) waiting to be executed.
+ * 2. Worker Threads: A set of threads that continuously pull tasks from the queue and run them.
+ * 3.An Execution Logic: A way to submit tasks to the queue.
+ *
+ * Here is a simple implementation of a Fixed Thread Pool:
  * LinkedBlockingQueue: We use a BlockingQueue because it is thread-safe and handles the "wait" logic for us. If the queue is empty, taskQueue.take() automatically puts the worker thread to sleep until a task is added.
  * The Worker Inner Class: This is a simple Thread. It runs an infinite loop. Inside the loop, it asks the queue for a task. If it gets one, it calls task.run().
  * execute(Runnable task): This is the producer side. It simply adds the task to the queue. As soon as the task is added, one of the waiting worker threads will wake up and grab it.
  * shutdown(): This sets a flag and interrupts the threads. Without this, the worker threads would stay in the take() (waiting) state forever, and your Java application would never terminate.
+ *
+ * Note:
+ * Java's built-in ThreadPoolExecutor is much more robust because it handles:
+ * Dynamic Resizing: Increasing/decreasing thread count based on load.
+ * Rejection Policies: Deciding what to do if the queue is full (e.g., throwing an error or running it on the caller's thread).
+ * Keep-Alive Times: Killing off idle threads to save memory.
+ * Result Handling: Returning Future objects to get return values from tasks.
  */
 public class MyCustomThreadPool {
     private final BlockingQueue<Runnable> taskQueue;
